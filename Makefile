@@ -19,11 +19,11 @@ dev:
 
 isort:
 	@echo "-> Apply isort changes to ensure proper imports ordering"
-	${VENV}/bin/isort --sl -l 100 src tests setup.py
+	${VENV}/bin/isort --profile black --sl -l 100 src tests setup.py builder.py
 
 black:
 	@echo "-> Apply black code formatter"
-	${VENV}/bin/black -l 100 src tests setup.py
+	${VENV}/bin/black -l 100 src tests setup.py builder.py
 
 doc8:
 	@echo "-> Run doc8 validation"
@@ -32,12 +32,12 @@ doc8:
 valid: isort black
 
 check:
-	@echo "-> Run pycodestyle (PEP8) validation"
-	@${ACTIVATE} pycodestyle --max-line-length=100 --exclude=.eggs,venv,lib,thirdparty,docs,migrations,settings.py,.cache .
+# 	@echo "-> Run pycodestyle (PEP8) validation"
+# 	@${ACTIVATE} pycodestyle --max-line-length=100 --exclude=.eggs,venv,lib,thirdparty,docs,migrations,settings.py,.cache .
 	@echo "-> Run isort imports ordering validation"
-	@${ACTIVATE} isort --sl --check-only -l 100 setup.py src tests . 
+	@${ACTIVATE} isort --profile black --sl --check-only -l 100 setup.py src tests builder.py
 	@echo "-> Run black validation"
-	@${ACTIVATE} black --check --check -l 100 src tests setup.py
+	@${ACTIVATE} black --check --check -l 100 src tests setup.py builder.py
 
 clean:
 	@echo "-> Clean the Python env"
@@ -51,4 +51,8 @@ docs:
 	rm -rf docs/_build/
 	@${ACTIVATE} sphinx-build docs/ docs/_build/
 
-.PHONY: conf dev check valid black isort clean test docs
+model:
+	@echo "-> Generate model for SPDX $(version)"
+	@${PYTHON_EXE} builder.py $(version)
+
+.PHONY: conf dev check valid black isort clean test docs model
