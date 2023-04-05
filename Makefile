@@ -45,7 +45,7 @@ clean:
 
 test:
 	@echo "-> Run the test suite"
-	${VENV}/bin/pytest -vvs
+	${VENV}/bin/pytest -vvs tests
 
 docs:
 	rm -rf docs/_build/
