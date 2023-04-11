@@ -2,7 +2,7 @@
 TurboSPDX
 =========
 
-TurboSPDX is a fast and lightweight Python library for parsing and writing SPDX JSON documents with pinpoint accuracy. With a precise implementation of the SPDX schema, library can accurately handle even the most complex SPDX documents.
+TurboSPDX is a fast and lightweight Python library for parsing and writing SPDX JSON documents with pinpoint accuracy. With its precise implementation of the SPDX schema, library can accurately handle even the most complex SPDX documents.
 
 |license| |version| |build| 
 
@@ -107,7 +107,7 @@ Examples
 How it works ?
 =================
 
-| TurboSPDX is a Pydantic model generated from the SPDX schema.
+| TurboSPDX is a `Pydantic <https://docs.pydantic.dev/>`_ model generated from the SPDX schema.
 |
 | TurboSPDX utilizes Pydantic's data validation and parsing capabilities to ensure that the generated model conforms to the SPDX schema. The model is type-safe and can easily serialize and deserialize data to and from JSON. The generated model is a precise manifestation of the SPDX schema,  it's as good as the SPDX schema.
 
