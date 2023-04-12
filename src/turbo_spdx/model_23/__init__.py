@@ -10,6 +10,8 @@ from __future__ import annotations
 
 from enum import Enum
 from typing import Any
+from typing import Dict
+from typing import List
 from typing import Optional
 
 from pydantic import BaseModel
@@ -58,7 +60,7 @@ class CreationInfo(BaseModel):
             " in ISO 8601 standard."
         ),
     )
-    creators: list[str] = Field(
+    creators: List[str] = Field(
         ...,
         description=(
             "Identify who (or what, in the case of a tool) created the SPDX document."
@@ -182,7 +184,7 @@ class HasExtractedLicensingInfo(BaseModel):
         extra = Extra.forbid
 
     comment: Optional[str]
-    crossRefs: Optional[list[CrossRef]] = Field(
+    crossRefs: Optional[List[CrossRef]] = Field(
         default=None, description="Cross Reference Detail for a license SeeAlso URL"
     )
     extractedText: str = Field(
@@ -206,7 +208,7 @@ class HasExtractedLicensingInfo(BaseModel):
         ),
     )
     name: Optional[str] = Field(default=None, description="Identify name of this SpdxElement.")
-    seeAlsos: Optional[list[str]]
+    seeAlsos: Optional[List[str]]
 
 
 class Reviewed(BaseModel):
@@ -276,7 +278,7 @@ class PackageVerificationCode(BaseModel):
     class Config:
         extra = Extra.forbid
 
-    packageVerificationCodeExcludedFiles: Optional[list[str]] = Field(
+    packageVerificationCodeExcludedFiles: Optional[List[str]] = Field(
         default=None,
         description=(
             "A file that was excluded when calculating the package verification code."
@@ -317,10 +319,10 @@ class Package(BaseModel):
             " by other elements."
         ),
     )
-    annotations: Optional[list[Annotation1]] = Field(
+    annotations: Optional[List[Annotation1]] = Field(
         default=None, description="Provide additional information about an SpdxElement."
     )
-    attributionTexts: Optional[list[str]] = Field(
+    attributionTexts: Optional[List[str]] = Field(
         default=None,
         description=(
             "This field provides a place for the SPDX data creator to record"
@@ -338,7 +340,7 @@ class Package(BaseModel):
             "This field provides a place for recording the actual date the package was" " built."
         ),
     )
-    checksums: Optional[list[Checksum1]] = Field(
+    checksums: Optional[List[Checksum1]] = Field(
         default=None,
         description=(
             "The checksum property provides a mechanism that can be used to verify that"
@@ -368,7 +370,7 @@ class Package(BaseModel):
             " download location, respectively."
         ),
     )
-    externalRefs: Optional[list[ExternalRef]] = Field(
+    externalRefs: Optional[List[ExternalRef]] = Field(
         default=None,
         description=(
             "An External Reference allows a Package to reference an external source of"
@@ -386,7 +388,7 @@ class Package(BaseModel):
             " the package must not contain any files."
         ),
     )
-    hasFiles: Optional[list[str]] = Field(
+    hasFiles: Optional[List[str]] = Field(
         default=None,
         description="Indicates that a particular file belongs to a package.",
     )
@@ -417,7 +419,7 @@ class Package(BaseModel):
             " software creator should be preferred, if they exist."
         ),
     )
-    licenseInfoFromFiles: Optional[list[str]] = Field(
+    licenseInfoFromFiles: Optional[List[str]] = Field(
         default=None,
         description=(
             "The licensing information that was discovered directly within the package."
@@ -534,10 +536,10 @@ class File(BaseModel):
             " by other elements."
         ),
     )
-    annotations: Optional[list[Annotation2]] = Field(
+    annotations: Optional[List[Annotation2]] = Field(
         default=None, description="Provide additional information about an SpdxElement."
     )
-    artifactOfs: Optional[list[dict[str, Any]]] = Field(
+    artifactOfs: Optional[List[Dict[str, Any]]] = Field(
         default=None,
         description=(
             "Indicates the project in which the SpdxElement originated. Tools must"
@@ -547,7 +549,7 @@ class File(BaseModel):
             " may be dropped when translating to or from some SPDX formats."
         ),
     )
-    attributionTexts: Optional[list[str]] = Field(
+    attributionTexts: Optional[List[str]] = Field(
         default=None,
         description=(
             "This field provides a place for the SPDX data creator to record"
@@ -559,7 +561,7 @@ class File(BaseModel):
             " from license texts, which may be necessary or desirable to reproduce."
         ),
     )
-    checksums: list[Checksum2] = Field(
+    checksums: List[Checksum2] = Field(
         ...,
         description=(
             "The checksum property provides a mechanism that can be used to verify that"
@@ -576,7 +578,7 @@ class File(BaseModel):
             " equivalent meaning to NOASSERTION."
         ),
     )
-    fileContributors: Optional[list[str]] = Field(
+    fileContributors: Optional[List[str]] = Field(
         default=None,
         description=(
             "This field provides a place for the SPDX file creator to record file"
@@ -585,7 +587,7 @@ class File(BaseModel):
             " file content."
         ),
     )
-    fileDependencies: Optional[list[str]] = Field(
+    fileDependencies: Optional[List[str]] = Field(
         default=None,
         description=(
             "This field is deprecated since SPDX 2.0 in favor of using Section 7 which"
@@ -595,7 +597,7 @@ class File(BaseModel):
     fileName: str = Field(
         ..., description="The name of the file relative to the root of the package."
     )
-    fileTypes: Optional[list[FileType]] = Field(default=None, description="The type of the file.")
+    fileTypes: Optional[List[FileType]] = Field(default=None, description="The type of the file.")
     licenseComments: Optional[str] = Field(
         default=None,
         description=(
@@ -613,7 +615,7 @@ class File(BaseModel):
             " it implies an equivalent meaning to NOASSERTION."
         ),
     )
-    licenseInfoInFiles: Optional[list[str]] = Field(
+    licenseInfoInFiles: Optional[List[str]] = Field(
         default=None,
         description=(
             "Licensing information that was discovered directly in the subject file."
@@ -668,10 +670,10 @@ class Snippet(BaseModel):
             " by other elements."
         ),
     )
-    annotations: Optional[list[Annotation3]] = Field(
+    annotations: Optional[List[Annotation3]] = Field(
         default=None, description="Provide additional information about an SpdxElement."
     )
-    attributionTexts: Optional[list[str]] = Field(
+    attributionTexts: Optional[List[str]] = Field(
         default=None,
         description=(
             "This field provides a place for the SPDX data creator to record"
@@ -709,7 +711,7 @@ class Snippet(BaseModel):
             " it implies an equivalent meaning to NOASSERTION."
         ),
     )
-    licenseInfoInSnippets: Optional[list[str]] = Field(
+    licenseInfoInSnippets: Optional[List[str]] = Field(
         default=None,
         description=(
             "Licensing information that was discovered directly in the subject snippet."
@@ -719,7 +721,7 @@ class Snippet(BaseModel):
         ),
     )
     name: str = Field(..., description="Identify name of this SpdxElement.")
-    ranges: list[Range] = Field(
+    ranges: List[Range] = Field(
         ...,
         description=(
             "This field defines the byte range in the original host file (in X.2) that"
@@ -809,7 +811,7 @@ class Document(BaseModel):
             " by other elements."
         ),
     )
-    annotations: Optional[list[Annotation]] = Field(
+    annotations: Optional[List[Annotation]] = Field(
         default=None, description="Provide additional information about an SpdxElement."
     )
     comment: Optional[str]
@@ -847,11 +849,11 @@ class Document(BaseModel):
             " law."
         ),
     )
-    externalDocumentRefs: Optional[list[ExternalDocumentRef]] = Field(
+    externalDocumentRefs: Optional[List[ExternalDocumentRef]] = Field(
         default=None,
         description=("Identify any external SPDX documents referenced within this SPDX document."),
     )
-    hasExtractedLicensingInfos: Optional[list[HasExtractedLicensingInfo]] = Field(
+    hasExtractedLicensingInfos: Optional[List[HasExtractedLicensingInfo]] = Field(
         default=None,
         description=(
             "Indicates that a particular ExtractedLicensingInfo was defined in the"
@@ -859,7 +861,7 @@ class Document(BaseModel):
         ),
     )
     name: str = Field(..., description="Identify name of this SpdxElement.")
-    revieweds: Optional[list[Reviewed]] = Field(default=None, description="Reviewed")
+    revieweds: Optional[List[Reviewed]] = Field(default=None, description="Reviewed")
     spdxVersion: str = Field(
         ...,
         description=(
@@ -879,19 +881,19 @@ class Document(BaseModel):
             " reference SPDX elements within this SPDX document."
         ),
     )
-    documentDescribes: Optional[list[str]] = Field(
+    documentDescribes: Optional[List[str]] = Field(
         default=None,
         description="Packages, files and/or Snippets described by this SPDX document",
     )
-    packages: Optional[list[Package]] = Field(
+    packages: Optional[List[Package]] = Field(
         default=None, description="Packages referenced in the SPDX document"
     )
-    files: Optional[list[File]] = Field(
+    files: Optional[List[File]] = Field(
         default=None, description="Files referenced in the SPDX document"
     )
-    snippets: Optional[list[Snippet]] = Field(
+    snippets: Optional[List[Snippet]] = Field(
         default=None, description="Snippets referenced in the SPDX document"
     )
-    relationships: Optional[list[Relationship]] = Field(
+    relationships: Optional[List[Relationship]] = Field(
         default=None, description="Relationships referenced in the SPDX document"
     )

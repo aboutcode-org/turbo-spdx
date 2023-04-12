@@ -103,7 +103,7 @@ def generate_data_model(schema_location: str, output_location: str) -> None:
         "--target-python-version",
         MODEL_PYTHON_TARGET_VERSION,
         "--use-double-quotes",
-        "--use-standard-collections",
+        # "--use-standard-collections",
         "--use-subclass-enum",
         "--wrap-string-literal",
         "--use-default-kwarg",
