@@ -147,8 +147,14 @@ class TestRoundTripSPDXModel_23:
         parsed_dict_from_model = json.loads(parsed_json_from_model)
         assert original_document == parsed_dict_from_model
 
-    def test_bom_SPDXJSONExample_v2_3(self) -> None:
+    def test_SPDXJSONExample_v2_3(self) -> None:
         self._validate_roundtrip(filename="SPDXJSONExample-v2.3.spdx.json")
+
+    def test_asgiref_spdx(self) -> None:
+        self._validate_roundtrip(filename="asgiref-3.3.0.spdx.json")
+
+    def test_toml_spdx(self) -> None:
+        self._validate_roundtrip(filename="toml.spdx.json")
 
 
 def spdx_to_dict(attributes):
