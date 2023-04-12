@@ -1,1 +1,2 @@
 datamodel-code-generator==0.17.2
+jsonschema==4.17.3
