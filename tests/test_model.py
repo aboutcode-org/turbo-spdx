@@ -16,7 +16,7 @@ import jsonschema
 from turbo_spdx import model_23 as spdx
 
 
-class TestSPDXModel(TestCase):
+class TestSPDXModel23(TestCase):
     creation_info_spdx_data = {
         "created": "2022-09-21T13:50:20Z",
         "creators": [
@@ -182,47 +182,46 @@ class TestSPDXModel(TestCase):
         "comment": "This document was created using SPDXCode-1.0",
     }
 
-    def get_dict(self, attributes):
-        json_attributes = attributes.json(exclude_unset=True, by_alias=True)
-        return json.loads(json_attributes)
-
     def test_spdx_creation_info_from_data(self):
         creation_info = spdx.CreationInfo(**self.creation_info_spdx_data)
-        assert self.creation_info_spdx_data == self.get_dict(creation_info)
+        assert self.creation_info_spdx_data == spdx_to_dict(creation_info)
 
     def test_spdx_checksum_from_data(self):
         checksum = spdx.Checksum(**self.checksum_sha1_spdx_data)
-        assert self.checksum_sha1_spdx_data == self.get_dict(checksum)
+        assert self.checksum_sha1_spdx_data == spdx_to_dict(checksum)
 
     def test_spdx_external_ref_from_data(self):
         external_ref = spdx.ExternalRef(**self.external_ref_purl_spdx_data)
-        assert self.external_ref_purl_spdx_data == self.get_dict(external_ref)
+        assert self.external_ref_purl_spdx_data == spdx_to_dict(external_ref)
 
     def test_spdx_extracted_licensing_info_from_data(self):
         licensing_info = spdx.HasExtractedLicensingInfo(**self.licensing_info_spdx_data)
-        assert self.licensing_info_spdx_data == self.get_dict(licensing_info)
+        assert self.licensing_info_spdx_data == spdx_to_dict(licensing_info)
 
     def test_spdx_package_from_data(self):
         package = spdx.Package(**self.package_spdx_data)
-        assert self.package_spdx_data == self.get_dict(package)
+        assert self.package_spdx_data == spdx_to_dict(package)
 
     def test_spdx_file_from_data(self):
         file = spdx.File(**self.file_spdx_data)
-        assert self.file_spdx_data == self.get_dict(file)
+        assert self.file_spdx_data == spdx_to_dict(file)
 
     def test_spdx_relationship_from_data(self):
         relationship = spdx.Relationship(**self.relationship_spdx_data)
-        assert self.relationship_spdx_data == self.get_dict(relationship)
+        assert self.relationship_spdx_data == spdx_to_dict(relationship)
 
     def test_spdx_document_from_data(self):
         document = spdx.Document(**self.document_spdx_data)
-        assert self.document_spdx_data == self.get_dict(document)
+        assert self.document_spdx_data == spdx_to_dict(document)
 
     def test_spdx_document_validate(self):
         schema = pathlib.Path(__file__).parent / "data" / "schema" / "2.3" / "spdx-schema.json"
-        schema = schema.read_text()
+        schema = schema.read_text(encoding="utf-8")
         schema = json.loads(schema)
 
         document_object = spdx.Document(**self.document_spdx_data)
-        document = self.get_dict(document_object)
+        document = spdx_to_dict(document_object)
         jsonschema.validate(instance=document, schema=schema)
+
+def spdx_to_dict(attributes):
+    return attributes.dict(exclude_unset=True, by_alias=True)
