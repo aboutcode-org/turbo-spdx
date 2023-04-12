@@ -1,0 +1,28 @@
+{
+   "name":"lxml",
+   "SPDXID":"SPDXRef-package1",
+   "downloadLocation":"NOASSERTION",
+   "licenseConcluded":"LicenseRef-1",
+   "copyrightText":"NOASSERTION",
+   "filesAnalyzed":false,
+   "versionInfo":"3.3.5",
+   "licenseDeclared":"NOASSERTION",
+   "releaseDate":"2000-01-01T00:00:00Z",
+   "checksums":[
+      {
+         "algorithm":"SHA1",
+         "checksumValue":"10c72b88de4c5f3095ebe20b4d8afbedb32b8f"
+      },
+      {
+         "algorithm":"MD5",
+         "checksumValue":"56770c1a2df6e0dc51c491f0a5b9d865"
+      }
+   ],
+   "externalRefs":[
+      {
+         "referenceCategory":"PACKAGE-MANAGER",
+         "referenceType":"purl",
+         "referenceLocator":"pkg:pypi/lxml@3.3.5"
+      }
+   ]
+}
