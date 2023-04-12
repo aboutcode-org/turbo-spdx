@@ -17,7 +17,7 @@ SPDX_SCHEMA_URL = (
 )
 TEMP_SCHEMA_DIR = "./spdx_schema_{version}"
 
-MODEL_DIR = "./src/turbo_spdx/model_{version}"
+MODEL_DIR = "./src/turbo_spdx/spdx_{version}"
 MODEL_PYTHON_TARGET_VERSION = "3.8"
 MODEL_CLASS_NAME = "Document"
 

@@ -1,6 +1,6 @@
 import json
 
-from turbo_spdx.model_23 import Document
+from turbo_spdx.spdx_23 import Document
 
 
 class TestSPDXModel_2Dot3:

@@ -35,7 +35,7 @@ Examples
 
    .. code-block:: python
 
-      >>> from turbo_spdx.model_23 import Document
+      >>> from turbo_spdx.spdx_23 import Document
       >>> 
       >>> your_existing_spdx_document = {
       ...   "SPDXID": "SPDXRef-DOCUMENT",
@@ -78,7 +78,7 @@ Examples
 
    .. code-block:: python
 
-        >>> from turbo_spdx.model_23 import Document, CreationInfo
+        >>> from turbo_spdx.spdx_23 import Document, CreationInfo
         >>> 
         >>> creation_info = CreationInfo(
         ...     created="2023-04-05T18:30:22Z",
