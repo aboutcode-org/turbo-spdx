@@ -2,7 +2,7 @@
 TurboSPDX
 =========
 
-TurboSPDX is a fast and lightweight Python library for parsing and writing SPDX JSON documents with pinpoint accuracy. With its precise implementation of the SPDX schema, library can accurately handle even the most complex SPDX documents.
+TurboSPDX is a fast and lightweight Python library for parsing and writing SPDX JSON documents correctly. With its precise implementation of the SPDX schema, library can accurately handle even the most complex SPDX documents.
 
 |license| |version| |build| 
 
