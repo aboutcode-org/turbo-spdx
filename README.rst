@@ -9,10 +9,9 @@ TurboSPDX is a fast and lightweight Python library for parsing and writing SPDX 
 .. |license| image:: https://img.shields.io/badge/License-Apache--2.0-blue.svg?style=for-the-badge
     :target: https://opensource.org/licenses/Apache-2.0
 
-.. |version| image:: https://img.shields.io/badge/Version-v1.0.0-brightgreen.svg?style=for-the-badge
-    :alt: Version: v1.0.0
+.. |version| image:: https://img.shields.io/github/v/release/nexB/turbo-spdx?style=for-the-badge
 
-.. |build| image:: https://img.shields.io/badge/Build-passing-brightgreen.svg?style=for-the-badge
+.. |build| image:: https://img.shields.io/azure-devops/build/nexB/e6a997f5-5fa0-4657-b83a-4df3dbd8cf27/35?style=for-the-badge
     :alt: Build: passing
 
 
