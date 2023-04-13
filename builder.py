@@ -17,7 +17,7 @@ SPDX_SCHEMA_URL = (
 )
 TEMP_SCHEMA_DIR = "./spdx_schema_{version}"
 
-MODEL_DIR = "./src/turbo_spdx/spdx_{version}"
+MODEL_OUTPUT_LOCATION = "./src/turbo_spdx/spdx_{version}.py"
 MODEL_PYTHON_TARGET_VERSION = "3.8"
 MODEL_CLASS_NAME = "Document"
 
@@ -64,21 +64,17 @@ def download_schema(version: str) -> str:
 
 def pre_generation(version: str) -> str:
     """
-    Create directory for the SPDX schema model corresponding to the given version.
+    Run post-generation tasks.
 
     Parameters:
         version (str): Version of the SPDX schema model.
 
     Returns:
-        str: The path to the '__init__.py' file in the created directory.
+        str: The path to the output file.
     """
     model_version = version.replace(".", "")
-    schema_directory = MODEL_DIR.format(version=model_version)
 
-    if not os.path.isdir(schema_directory):
-        os.mkdir(schema_directory)
-
-    return f"{schema_directory}/__init__.py"
+    return MODEL_OUTPUT_LOCATION.format(version=model_version)
 
 
 def generate_data_model(schema_location: str, output_location: str) -> None:
