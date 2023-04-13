@@ -20,11 +20,15 @@ from pydantic import Field
 
 
 class AnnotationType(str, Enum):
+    """Type of the annotation."""
+
     OTHER = "OTHER"
     REVIEW = "REVIEW"
 
 
 class Annotation(BaseModel):
+    """An Annotation is a comment on an SpdxItem by an agent."""
+
     class Config:
         extra = Extra.forbid
 
@@ -48,6 +52,13 @@ class Annotation(BaseModel):
 
 
 class CreationInfo(BaseModel):
+    """
+    One instance is required for each SPDX file produced.
+
+    It provides the necessary information for forward and backward
+    compatibility for processing tools.
+    """
+
     class Config:
         extra = Extra.forbid
 
@@ -84,6 +95,13 @@ class CreationInfo(BaseModel):
 
 
 class Algorithm(str, Enum):
+    """
+    Identifies the algorithm used to produce the subject Checksum.
+
+    Currently, SHA-1 is the only supported algorithm. It is anticipated
+    that other algorithms will be supported at a later time.
+    """
+
     SHA1 = "SHA1"
     BLAKE3 = "BLAKE3"
     SHA3_384 = "SHA3-384"
@@ -104,6 +122,14 @@ class Algorithm(str, Enum):
 
 
 class Checksum(BaseModel):
+    """
+    A Checksum is value that allows the contents of a file to be authenticated.
+
+    Even small changes to the content of the file will change its
+    checksum. This class allows the results of a variety of checksum and
+    cryptographic message digest algorithms to be represented.
+    """
+
     class Config:
         extra = Extra.forbid
 
@@ -125,6 +151,13 @@ class Checksum(BaseModel):
 
 
 class ExternalDocumentRef(BaseModel):
+    """
+    Information about an external SPDX document reference including the
+    checksum.
+
+    This allows for verification of the external references.
+    """
+
     class Config:
         extra = Extra.forbid
 
@@ -151,6 +184,8 @@ class ExternalDocumentRef(BaseModel):
 
 
 class CrossRef(BaseModel):
+    """Cross reference details for the a URL reference."""
+
     class Config:
         extra = Extra.forbid
 
@@ -180,6 +215,14 @@ class CrossRef(BaseModel):
 
 
 class HasExtractedLicensingInfo(BaseModel):
+    """
+    An ExtractedLicensingInfo represents a license or licensing notice that was
+    found in a package, file or snippet.
+
+    Any license text that is recognized as a license may be represented
+    as a License rather than an ExtractedLicensingInfo.
+    """
+
     class Config:
         extra = Extra.forbid
 
@@ -212,6 +255,9 @@ class HasExtractedLicensingInfo(BaseModel):
 
 
 class Reviewed(BaseModel):
+    """This class has been deprecated in favor of an Annotation with an
+    Annotation type of review."""
+
     class Config:
         extra = Extra.forbid
 
@@ -235,14 +281,22 @@ class Reviewed(BaseModel):
 
 
 class Annotation1(Annotation):
-    pass
+    """An Annotation is a comment on an SpdxItem by an agent."""
 
 
 class Checksum1(Checksum):
-    pass
+    """
+    A Checksum is value that allows the contents of a file to be authenticated.
+
+    Even small changes to the content of the file will change its
+    checksum. This class allows the results of a variety of checksum and
+    cryptographic message digest algorithms to be represented.
+    """
 
 
 class ReferenceCategory(str, Enum):
+    """Category for the external reference."""
+
     OTHER = "OTHER"
     PERSISTENT_ID = "PERSISTENT-ID"
     SECURITY = "SECURITY"
@@ -250,6 +304,10 @@ class ReferenceCategory(str, Enum):
 
 
 class ExternalRef(BaseModel):
+    """An External Reference allows a Package to reference an external source
+    of additional information, metadata, enumerations, asset identifiers, or
+    downloadable content believed to be relevant to the Package."""
+
     class Config:
         extra = Extra.forbid
 
@@ -275,6 +333,16 @@ class ExternalRef(BaseModel):
 
 
 class PackageVerificationCode(BaseModel):
+    """
+    A manifest based verification code (the algorithm is defined in section 4.7
+    of the full specification) of the SPDX Item.
+
+    This allows consumers of this data and/or database to determine if
+    an SPDX item they have in hand is identical to the SPDX item from
+    which the data was produced. This algorithm works even if the SPDX
+    document is included in the SPDX item.
+    """
+
     class Config:
         extra = Extra.forbid
 
@@ -294,6 +362,14 @@ class PackageVerificationCode(BaseModel):
 
 
 class PrimaryPackagePurpose(str, Enum):
+    """
+    This field provides information about the primary purpose of the identified
+    package.
+
+    Package Purpose is intrinsic to how the package is being used rather
+    than the content of the package.
+    """
+
     OTHER = "OTHER"
     INSTALL = "INSTALL"
     ARCHIVE = "ARCHIVE"
@@ -504,14 +580,22 @@ class Package(BaseModel):
 
 
 class Annotation2(Annotation):
-    pass
+    """An Annotation is a comment on an SpdxItem by an agent."""
 
 
 class Checksum2(Checksum):
-    pass
+    """
+    A Checksum is value that allows the contents of a file to be authenticated.
+
+    Even small changes to the content of the file will change its
+    checksum. This class allows the results of a variety of checksum and
+    cryptographic message digest algorithms to be represented.
+    """
 
 
 class FileType(str, Enum):
+    """The type of the file."""
+
     OTHER = "OTHER"
     DOCUMENTATION = "DOCUMENTATION"
     IMAGE = "IMAGE"
@@ -635,7 +719,7 @@ class File(BaseModel):
 
 
 class Annotation3(Annotation):
-    pass
+    """An Annotation is a comment on an SpdxItem by an agent."""
 
 
 class EndPointer(BaseModel):
@@ -739,6 +823,8 @@ class Snippet(BaseModel):
 
 
 class RelationshipType(str, Enum):
+    """Describes the type of relationship between two SPDX elements."""
+
     VARIANT_OF = "VARIANT_OF"
     COPY_OF = "COPY_OF"
     PATCH_FOR = "PATCH_FOR"

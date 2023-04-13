@@ -99,11 +99,10 @@ def generate_data_model(schema_location: str, output_location: str) -> None:
         "--input-file-type",
         "jsonschema",
         "--reuse-model",
-        # "--snake-case-field",
+        "--use-schema-description",
         "--target-python-version",
         MODEL_PYTHON_TARGET_VERSION,
         "--use-double-quotes",
-        # "--use-standard-collections",
         "--use-subclass-enum",
         "--wrap-string-literal",
         "--use-default-kwarg",
@@ -175,12 +174,34 @@ def post_generation(output_location: str) -> None:
     print(run_black.stderr.decode())
 
     run_isort = subprocess.run(
-        ["venv/bin/isort", "--profile", "black", "--sl", "-l", "100", output_location],
+        [
+            "venv/bin/isort",
+            "--profile",
+            "black",
+            "--sl",
+            "-l",
+            "100",
+            output_location,
+        ],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
     print(run_isort.stdout.decode())
     print(run_isort.stderr.decode())
+
+    # Docstring formatting
+    run_docformatter = subprocess.run(
+        [
+            "docformatter",
+            "--in-place",
+            "--pre-summary-newline",
+            output_location,
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    print(run_docformatter.stdout.decode())
+    print(run_docformatter.stderr.decode())
 
 
 def strip_leading_v(version: str) -> str:
