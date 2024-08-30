@@ -2,7 +2,7 @@
 # Copyright (c) nexB Inc. and others. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/nexB/turbo-spdx for support or download.
+# See https://github.com/aboutcode-org/turbo-spdx for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
@@ -111,7 +111,8 @@ def generate_data_model(schema_location: str, output_location: str) -> None:
         "--output",
         output_location,
     ]
-    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    result = subprocess.run(
+        command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     # Print the stdout and stderr outputs
     print(result.stdout.decode())
@@ -210,7 +211,8 @@ def strip_leading_v(version: str) -> str:
     Returns:
         str: Version with any leading "v" or "V" character removed.
     """
-    striped_version = version[1:] if version.startswith(("v", "V")) else version
+    striped_version = version[1:] if version.startswith(
+        ("v", "V")) else version
     return striped_version
 
 

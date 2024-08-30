@@ -3,7 +3,7 @@
 # ScanCode is a trademark of nexB Inc.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/nexB/scancode-toolkit for support or download.
+# See https://github.com/aboutcode-org/scancode-toolkit for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
@@ -98,7 +98,8 @@ class TestSPDXModel_23(TestCase):
 
     def test_spdx_package(self):
         package_spdx_data = (
-            pathlib.Path(__file__).parent / "data" / "fixtures" / "2.3" / "package_spdx_data.json"
+            pathlib.Path(__file__).parent / "data" / "fixtures" /
+            "2.3" / "package_spdx_data.json"
         )
         package_spdx_data = package_spdx_data.read_text()
         package_spdx_data = json.loads(package_spdx_data)
@@ -108,7 +109,8 @@ class TestSPDXModel_23(TestCase):
 
     def test_spdx_document(self):
         document_spdx_data = (
-            pathlib.Path(__file__).parent / "data" / "fixtures" / "2.3" / "document_spdx_data.json"
+            pathlib.Path(__file__).parent / "data" / "fixtures" /
+            "2.3" / "document_spdx_data.json"
         )
         document_spdx_data = document_spdx_data.read_text()
         document_spdx_data = json.loads(document_spdx_data)
@@ -117,12 +119,14 @@ class TestSPDXModel_23(TestCase):
         assert document_spdx_data == spdx_to_dict(document)
 
     def test_spdx_document_validate(self):
-        schema = pathlib.Path(__file__).parent / "data" / "schema" / "2.3" / "spdx-schema.json"
+        schema = pathlib.Path(__file__).parent / "data" / \
+            "schema" / "2.3" / "spdx-schema.json"
         schema = schema.read_text(encoding="utf-8")
         schema = json.loads(schema)
 
         document_spdx_data = (
-            pathlib.Path(__file__).parent / "data" / "fixtures" / "2.3" / "document_spdx_data.json"
+            pathlib.Path(__file__).parent / "data" / "fixtures" /
+            "2.3" / "document_spdx_data.json"
         )
         document_spdx_data = document_spdx_data.read_text()
         document_spdx_data = json.loads(document_spdx_data)
@@ -137,7 +141,8 @@ class TestRoundTripSPDXModel_23:
         """
         Roundtrip test: Json->SPDXBom Object->Json
         """
-        document_path = pathlib.Path(__file__).parent / "data" / "fixtures" / "2.3" / filename
+        document_path = pathlib.Path(
+            __file__).parent / "data" / "fixtures" / "2.3" / filename
         original_document = document_path.read_text()
         original_document = json.loads(original_document)
 

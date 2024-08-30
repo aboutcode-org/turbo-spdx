@@ -2,7 +2,7 @@
 # Copyright (c) nexB Inc. and others. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 # See http://www.apache.org/licenses/LICENSE-2.0 for the license text.
-# See https://github.com/nexB/turbo-spdx for support or download.
+# See https://github.com/aboutcode-org/turbo-spdx for support or download.
 # See https://aboutcode.org for more information about nexB OSS projects.
 #
 
@@ -40,7 +40,8 @@ class Annotation(BaseModel):
             " 8601 standard."
         ),
     )
-    annotationType: AnnotationType = Field(..., description="Type of the annotation.")
+    annotationType: AnnotationType = Field(...,
+                                           description="Type of the annotation.")
     annotator: str = Field(
         ...,
         description=(
@@ -179,7 +180,8 @@ class ExternalDocumentRef(BaseModel):
     )
     spdxDocument: str = Field(
         ...,
-        description=("SPDX ID for SpdxDocument.  A property containing an SPDX document."),
+        description=(
+            "SPDX ID for SpdxDocument.  A property containing an SPDX document."),
     )
 
 
@@ -191,7 +193,8 @@ class CrossRef(BaseModel):
 
     isLive: Optional[bool] = Field(
         default=None,
-        description=("Indicate a URL is still a live accessible location on the public internet"),
+        description=(
+            "Indicate a URL is still a live accessible location on the public internet"),
     )
     isValid: Optional[bool] = Field(
         default=None, description="True if the URL is a valid well formed URL"
@@ -250,7 +253,8 @@ class HasExtractedLicensingInfo(BaseModel):
             " docRefIdString is an ID for an external document reference."
         ),
     )
-    name: Optional[str] = Field(default=None, description="Identify name of this SpdxElement.")
+    name: Optional[str] = Field(
+        default=None, description="Identify name of this SpdxElement.")
     seeAlsos: Optional[List[str]]
 
 
@@ -517,7 +521,8 @@ class Package(BaseModel):
     )
     packageFileName: Optional[str] = Field(
         default=None,
-        description=("The base name of the package file name. For example, zlib-1.2.5.tar.gz."),
+        description=(
+            "The base name of the package file name. For example, zlib-1.2.5.tar.gz."),
     )
     packageVerificationCode: Optional[PackageVerificationCode] = Field(
         default=None,
@@ -681,7 +686,8 @@ class File(BaseModel):
     fileName: str = Field(
         ..., description="The name of the file relative to the root of the package."
     )
-    fileTypes: Optional[List[FileType]] = Field(default=None, description="The type of the file.")
+    fileTypes: Optional[List[FileType]] = Field(
+        default=None, description="The type of the file.")
     licenseComments: Optional[str] = Field(
         default=None,
         description=(
@@ -727,8 +733,10 @@ class EndPointer(BaseModel):
         extra = Extra.forbid
 
     reference: str = Field(..., description="SPDX ID for File")
-    offset: Optional[int] = Field(default=None, description="Byte offset in the file")
-    lineNumber: Optional[int] = Field(default=None, description="line number offset in the file")
+    offset: Optional[int] = Field(
+        default=None, description="Byte offset in the file")
+    lineNumber: Optional[int] = Field(
+        default=None, description="line number offset in the file")
 
 
 class StartPointer(EndPointer):
@@ -876,7 +884,8 @@ class Relationship(BaseModel):
     class Config:
         extra = Extra.forbid
 
-    spdxElementId: str = Field(..., description="Id to which the SPDX element is related")
+    spdxElementId: str = Field(...,
+                               description="Id to which the SPDX element is related")
     comment: Optional[str]
     relatedSpdxElement: str = Field(
         ..., description="SPDX ID for SpdxElement.  A related SpdxElement."
@@ -937,7 +946,8 @@ class Document(BaseModel):
     )
     externalDocumentRefs: Optional[List[ExternalDocumentRef]] = Field(
         default=None,
-        description=("Identify any external SPDX documents referenced within this SPDX document."),
+        description=(
+            "Identify any external SPDX documents referenced within this SPDX document."),
     )
     hasExtractedLicensingInfos: Optional[List[HasExtractedLicensingInfo]] = Field(
         default=None,
@@ -947,7 +957,8 @@ class Document(BaseModel):
         ),
     )
     name: str = Field(..., description="Identify name of this SpdxElement.")
-    revieweds: Optional[List[Reviewed]] = Field(default=None, description="Reviewed")
+    revieweds: Optional[List[Reviewed]] = Field(
+        default=None, description="Reviewed")
     spdxVersion: str = Field(
         ...,
         description=(

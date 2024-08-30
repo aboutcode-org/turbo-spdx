@@ -4,7 +4,7 @@ TurboSPDX
 
 TurboSPDX is a fast and lightweight Python library for parsing and writing SPDX JSON documents correctly. With its precise implementation of the SPDX schema, library can accurately handle even the most complex SPDX documents.
 
-|license| |version| |build| 
+|license| |version| |build|
 
 .. |license| image:: https://img.shields.io/badge/License-Apache--2.0-blue.svg?style=for-the-badge
     :target: https://opensource.org/licenses/Apache-2.0
@@ -35,7 +35,7 @@ Examples
    .. code-block:: python
 
       >>> from turbo_spdx.spdx_23 import Document
-      >>> 
+      >>>
       >>> your_existing_spdx_document = {
       ...   "SPDXID": "SPDXRef-DOCUMENT",
       ...   "spdxVersion": "SPDX-2.3",
@@ -64,7 +64,7 @@ Examples
       ...     }
       ...   ]
       ... }
-      >>> 
+      >>>
       >>> parsed_sbom = Document(**your_existing_spdx_document)
       >>>
       >>> parsed_sbom.name
@@ -78,7 +78,7 @@ Examples
    .. code-block:: python
 
         >>> from turbo_spdx.spdx_23 import Document, CreationInfo
-        >>> 
+        >>>
         >>> creation_info = CreationInfo(
         ...     created="2023-04-05T18:30:22Z",
         ...     creators=["Organization: nexB"]
@@ -101,7 +101,7 @@ Examples
         >>> sbom.json(exclude_unset=True, by_alias=True)
         '{"SPDXID": "SPDXRef-DOCUMENT", "creationInfo": {"created": "2023-04-05T18:30:22Z", "creators": ["Organization: nexB"]}, "dataLicense": "Apache-2.0", "name": "TurboSPDX-v1.0", "spdxVersion": "SPDX-2.3"}'
 
- 
+
 
 How it works ?
 =================
@@ -120,10 +120,10 @@ We welcome contributions from the community! If you find a bug or have an idea f
 
 Development setup
 ------------------
-Run these commands, starting from a git clone of https://github.com/nexB/turbo-spdx.git
+Run these commands, starting from a git clone of https://github.com/aboutcode-org/turbo-spdx.git
 
 .. code-block:: bash
-    
+
     $ ./configure --dev
     $ source venv/bin/active
 
